@@ -1,14 +1,26 @@
-export type IStorage = any;
+import { IStorage } from './storage.mongo';
+import { MongoStorage } from './storage.mongo';
+import { DatabaseStorage } from './storage.postgres';
 
-const kind = (process.env.STORAGE || "postgres").toLowerCase();
 let storageInstance: IStorage;
 
-if (kind === "mongo" || kind === "mongodb") {
-  const mod = await import("./storage.mongo");
-  storageInstance = new mod.MongoStorage();
-} else {
-  const mod = await import("./storage.postgres");
-  storageInstance = new mod.DatabaseStorage();
+export async function initializeStorage(): Promise<IStorage> {
+  if (storageInstance) return storageInstance;
+
+  const kind = (process.env.STORAGE || "mongo").toLowerCase();
+  
+  if (kind === "mongo" || kind === "mongodb") {
+    storageInstance = new MongoStorage();
+  } else {
+    storageInstance = new DatabaseStorage();
+  }
+  
+  return storageInstance;
 }
 
-export const storage: IStorage = storageInstance;
+export function getStorage(): IStorage {
+  if (!storageInstance) {
+    throw new Error('Storage not initialized. Call initializeStorage() first.');
+  }
+  return storageInstance;
+}
