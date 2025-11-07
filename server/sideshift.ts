@@ -4,7 +4,9 @@
  */
 
 const SIDESHIFT_API_URL = "https://api.sideshift.ai/v2";
+// @ts-ignore - process.env is available at runtime
 const SIDESHIFT_SECRET = process.env.SIDESHIFT_SECRET || "";
+// @ts-ignore - process.env is available at runtime
 const SIDESHIFT_AFFILIATE_ID = process.env.SIDESHIFT_AFFILIATE_ID || "";
 
 export interface SideShiftCoin {
