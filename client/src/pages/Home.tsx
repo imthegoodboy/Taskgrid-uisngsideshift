@@ -226,6 +226,68 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="py-24 bg-primary/5">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <Badge variant="secondary" className="mb-4">
+              <ArrowRightLeft className="h-3 w-3 mr-1" />
+              Powered by SideShift API
+            </Badge>
+            <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-4">
+              Multi-Currency Payment System
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              TaskGrid integrates SideShift API to enable seamless cryptocurrency conversions.
+              Pay in any supported coin, receive in USDC instantly.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+            <Card className="hover-elevate">
+              <CardHeader>
+                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
+                  <Globe className="h-6 w-6 text-primary" />
+                </div>
+                <CardTitle>100+ Coins Supported</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <CardDescription className="text-base">
+                  Accept payments in Bitcoin, Ethereum, MATIC, and 100+ other cryptocurrencies
+                </CardDescription>
+              </CardContent>
+            </Card>
+
+            <Card className="hover-elevate">
+              <CardHeader>
+                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
+                  <Zap className="h-6 w-6 text-primary" />
+                </div>
+                <CardTitle>Instant Conversion</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <CardDescription className="text-base">
+                  All payments automatically converted to USDC for stability and consistency
+                </CardDescription>
+              </CardContent>
+            </Card>
+
+            <Card className="hover-elevate">
+              <CardHeader>
+                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
+                  <TrendingUp className="h-6 w-6 text-primary" />
+                </div>
+                <CardTitle>Real-Time Rates</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <CardDescription className="text-base">
+                  Get live conversion rates and execute swaps instantly through SideShift
+                </CardDescription>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
       <section className="py-24 bg-muted/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
