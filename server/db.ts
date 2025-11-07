@@ -1,27 +1,21 @@
-import { getMongoDb } from './mongo';
-import { MongoStorage } from './storage.mongo';
-import { Storage } from './storage';
+import { Pool, neonConfig } from '@neondatabase/serverless';
+import { drizzle } from 'drizzle-orm/neon-serverless';
+import ws from "ws";
+import * as schema from "@shared/schema";
 
-let storage: Storage;
+neonConfig.webSocketConstructor = ws;
 
-export async function initializeStorage(): Promise<Storage> {
-  if (storage) return storage;
-  
-  const storageType = process.env.STORAGE || 'mongo';
-  
-  if (storageType === 'mongo') {
-    const db = await getMongoDb();
-    storage = new MongoStorage(db);
-  } else {
-    throw new Error(`Unsupported storage type: ${storageType}`);
+// Support both PostgreSQL and MongoDB
+const storageType = process.env.STORAGE || 'mongo';
+
+if (storageType === 'postgres') {
+  if (!process.env.DATABASE_URL) {
+    throw new Error("DATABASE_URL must be set for PostgreSQL storage");
   }
-  
-  return storage;
-}
 
-export function getStorage(): Storage {
-  if (!storage) {
-    throw new Error('Storage not initialized. Call initializeStorage() first.');
-  }
-  return storage;
+  export const pool = new Pool({ connectionString: process.env.DATABASE_URL });
+  export const db = drizzle({ client: pool, schema });
+} else {
+  // For MongoDB compatibility
+  export const db = null; // This will be handled by storage.mongo.ts
 }
