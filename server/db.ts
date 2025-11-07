@@ -8,14 +8,16 @@ neonConfig.webSocketConstructor = ws;
 // Support both PostgreSQL and MongoDB
 const storageType = process.env.STORAGE || 'mongo';
 
+let pool: Pool | null = null;
+let dbInstance: any = null;
+
 if (storageType === 'postgres') {
   if (!process.env.DATABASE_URL) {
     throw new Error("DATABASE_URL must be set for PostgreSQL storage");
   }
 
-  export const pool = new Pool({ connectionString: process.env.DATABASE_URL });
-  export const db = drizzle({ client: pool, schema });
-} else {
-  // For MongoDB compatibility
-  export const db = null; // This will be handled by storage.mongo.ts
+  pool = new Pool({ connectionString: process.env.DATABASE_URL });
+  dbInstance = drizzle({ client: pool, schema });
 }
+
+export const db = dbInstance;
