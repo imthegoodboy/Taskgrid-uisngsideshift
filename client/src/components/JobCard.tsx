@@ -2,9 +2,17 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Calendar, DollarSign, Star, Users } from "lucide-react";
+import { Calendar, DollarSign, Star, Users, Bookmark, Share2, ArrowRightLeft } from "lucide-react";
 import { Link } from "wouter";
 import type { Job, User } from "@shared/schema";
+import { useState } from "react";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import { toast } from "@/hooks/use-toast";
 
 interface JobCardProps {
   job: Job & { client?: User; _count?: { applications: number } };
