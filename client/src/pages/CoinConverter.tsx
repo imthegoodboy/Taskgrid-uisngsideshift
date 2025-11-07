@@ -159,12 +159,7 @@ export default function CoinConverter() {
                       </SelectTrigger>
                       <SelectContent>
                         {availableCoins.map((coin: any) => (
-                          <SelectItem key={coin.id} value={coin.id}>
-                            <div className="flex items-center gap-2">
-                              <span className="font-medium">{coin.symbol}</span>
-                              <span className="text-xs text-muted-foreground">({coin.name})</span>
-                            </div>
-                          </SelectItem>
+                          <SelectItem key={coin.id} value={coin.id}>{coin.symbol} ({coin.name})</SelectItem>
                         ))}
                       </SelectContent>
                     </Select>
@@ -203,11 +198,11 @@ export default function CoinConverter() {
                           <div className="flex items-center gap-2">
                             <span className="font-medium">{coin.symbol}</span>
                             <span className="text-xs text-muted-foreground">({coin.name})</span>
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
+                          </div>
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
                     </Select>
-                  </Select>
                 </div>
 
                 {/* Quote Display */}
