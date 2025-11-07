@@ -54,7 +54,7 @@ app.use((req, res, next) => {
     await initializeStorage();
     log('Storage initialized successfully');
   } catch (error) {
-    log('Error initializing storage:', error);
+    log(`Error initializing storage: ${error instanceof Error ? error.message : 'Unknown error'}`);
     process.exit(1);
   }
 
